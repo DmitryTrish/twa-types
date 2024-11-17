@@ -193,14 +193,14 @@ export type PopupParams = {
 export type PopupButton = {
   id?: string;
 } & (
-  | {
+    | {
       type: "default" | "destructive";
       text: string;
     }
-  | {
+    | {
       type: "ok" | "close" | "cancel";
     }
-);
+  );
 
 export type ScanQrPopupParams = {
   text?: string;
@@ -258,6 +258,44 @@ export type ShareStoryParams = {
   text?: string;
   widget_link?: StoryWidgetLink;
 };
+
+export interface Accelerometer {
+  isStarted: boolean;
+  x: number;
+  y: number;
+  z: number;
+  start: (params: any, callback: () => void) => VoidFunction;
+  stop: (callback: () => void) => VoidFunction;
+}
+
+export interface DeviceOrientation {
+  isStarted: boolean;
+  absolute: boolean;
+  alpha: number;
+  beta: number;
+  gamma: number;
+  start: (params: any, callback: () => void) => VoidFunction;
+  stop: (callback: () => void) => VoidFunction;
+}
+
+export interface Gyroscope {
+  isStarted: boolean;
+  x: number;
+  y: number;
+  z: number;
+  start: (params: any, callback: () => void) => VoidFunction;
+  stop: (callback: () => void) => VoidFunction;
+}
+
+export interface LocationManager {
+  isInited: boolean;
+  isLocationAvailable: boolean;
+  isAccessRequested: boolean;
+  isAccessGranted: boolean;
+  init: (callback: () => void) => VoidFunction;
+  getLocation: (callback: () => void) => VoidFunction;
+  openSettings: () => VoidFunction;
+}
 
 export interface WebApp {
   isExpanded: boolean;
@@ -330,6 +368,9 @@ export interface WebApp {
   shareToStory: (mediaURL: string, params?: ShareStoryParams) => void;
   bottomBarColor: string;
   setBottomBarColor: (bottomBarColor: string) => void;
+  Accelerometer: Accelerometer;
+  DeviceOrientation: DeviceOrientation;
+  Gyroscope: Gyroscope
 }
 
 export interface Telegram {
